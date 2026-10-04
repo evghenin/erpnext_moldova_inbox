@@ -1,0 +1,87 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "autoname": "hash",
+ "creation": "2026-10-04 15:20:00.000000",
+ "doctype": "DocType",
+ "email_append_to": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "original_sender_name",
+  "original_sender_email",
+  "original_subject",
+  "email_account",
+  "communication",
+  "handlers"
+ ],
+ "fields": [
+  {
+   "fieldname": "original_sender_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Original Sender Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "original_sender_email",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Original Sender Email",
+   "read_only": 1
+  },
+  {
+   "fieldname": "original_subject",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Original Subject",
+   "read_only": 1
+  },
+  {
+   "fieldname": "email_account",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Email Account",
+   "options": "Email Account",
+   "read_only": 1
+  },
+  {
+   "fieldname": "communication",
+   "fieldtype": "Link",
+   "label": "Communication",
+   "options": "Communication",
+   "read_only": 1
+  },
+  {
+   "fieldname": "handlers",
+   "fieldtype": "Table",
+   "read_only": 1,
+   "label": "Handlers",
+   "options": "Supplier Inbox Email Handler"
+  }
+ ],
+ "links": [],
+ "modified": "2026-10-04 15:20:00.000000",
+ "modified_by": "Administrator",
+ "module": "Moldova Supplier Inbox",
+ "name": "Supplier Inbox Email",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "recipient_account_field": "email_account",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "original_subject",
+ "track_changes": 1
+}

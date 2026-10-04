@@ -1,0 +1,35 @@
+Added IMAP folder INBOX with Append To Supplier Inbox Email,Добавлена папка IMAP INBOX с Append To на Supplier Inbox Email
+Attempt Time,Время попытки
+Communication,Коммуникация
+Configure Email Account,Настроить почтовый ящик
+Create Missing Emails,Создать недостающие письма
+Created {0} Supplier Inbox Email documents.,Создано документов Supplier Inbox Email: {0}.
+Email Account,Учётная запись почты
+Email Account {0} is already set to Supplier Inbox Email.,Учётная запись {0} уже настроена на Supplier Inbox Email.
+Email Account {0}: {1},Учётная запись {0}: {1}
+Enabled,Включено
+Enabled IMAP,IMAP включён
+Enabled incoming,Входящая почта включена
+Error,Ошибка
+Every received message already has a Supplier Inbox Email.,У каждого полученного письма уже есть Supplier Inbox Email.
+Failed,Ошибка
+Failed handlers and handlers with no row were queued again.,Обработчики со сбоем и без строки снова поставлены в очередь.
+Handler,Обработчик
+Handlers,Обработчики
+Moldova Supplier Inbox,Входящие поставщиков
+Original Sender Email,Email исходного отправителя
+Original Sender Name,Имя исходного отправителя
+Original Subject,Исходная тема
+Processed,Обработано
+Queued,В очереди
+Reference DocType,Тип связанного документа
+Reference Name,Имя связанного документа
+Retry Handlers,Повторить обработчики
+Select an Email Account first.,Сначала выберите учётную запись почты.
+Set Append To to Supplier Inbox Email on folder {0},Для папки {0} указан Append To Supplier Inbox Email
+"Set sync to all messages, including those already read","Синхронизация переключена на все письма, включая прочитанные"
+Skipped,Пропущено
+Status,Статус
+Supplier Inbox Email,Входящее письмо поставщика
+Supplier Inbox Email Handler,Обработчик письма поставщика
+Supplier Inbox Settings,Настройки писем поставщиков

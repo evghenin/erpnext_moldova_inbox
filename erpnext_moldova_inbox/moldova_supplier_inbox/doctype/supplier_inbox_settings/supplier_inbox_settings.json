@@ -1,0 +1,53 @@
+{
+ "actions": [],
+ "creation": "2026-10-04 15:20:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "enabled",
+  "email_account",
+  "configure_email_account"
+ ],
+ "fields": [
+  {
+   "default": "1",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enabled"
+  },
+  {
+   "fieldname": "email_account",
+   "fieldtype": "Link",
+   "label": "Email Account",
+   "options": "Email Account"
+  },
+  {
+   "fieldname": "configure_email_account",
+   "fieldtype": "Button",
+   "label": "Configure Email Account"
+  }
+ ],
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-10-04 15:20:00.000000",
+ "modified_by": "Administrator",
+ "module": "Moldova Supplier Inbox",
+ "name": "Supplier Inbox Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
