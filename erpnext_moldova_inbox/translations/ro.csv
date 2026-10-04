@@ -1,0 +1,35 @@
+Added IMAP folder INBOX with Append To Supplier Inbox Email,A fost adăugat folderul IMAP INBOX cu Append To către Supplier Inbox Email
+Attempt Time,Ora încercării
+Communication,Comunicare
+Configure Email Account,Configurează contul de email
+Create Missing Emails,Creează emailurile lipsă
+Created {0} Supplier Inbox Email documents.,Au fost create {0} documente Supplier Inbox Email.
+Email Account,Cont de email
+Email Account {0} is already set to Supplier Inbox Email.,Contul de email {0} este deja setat pe Supplier Inbox Email.
+Email Account {0}: {1},Cont de email {0}: {1}
+Enabled,Activat
+Enabled IMAP,IMAP a fost activat
+Enabled incoming,Primirea a fost activată
+Error,Eroare
+Every received message already has a Supplier Inbox Email.,Fiecare mesaj primit are deja un Supplier Inbox Email.
+Failed,Eșuat
+Failed handlers and handlers with no row were queued again.,Procesatorii eșuați și cei fără rând au fost puși din nou în coadă.
+Handler,Procesator
+Handlers,Procesatori
+Moldova Supplier Inbox,Moldova Supplier Inbox
+Original Sender Email,Email expeditor original
+Original Sender Name,Nume expeditor original
+Original Subject,Subiect original
+Processed,Procesat
+Queued,În coadă
+Reference DocType,Tip document de referință
+Reference Name,Nume de referință
+Retry Handlers,Reîncearcă procesatorii
+Select an Email Account first.,Selectați mai întâi un cont de email.
+Set Append To to Supplier Inbox Email on folder {0},Append To a fost setat la Supplier Inbox Email pentru folderul {0}
+"Set sync to all messages, including those already read","Sincronizarea a fost setată pe toate mesajele, inclusiv cele citite"
+Skipped,Omis
+Status,Statut
+Supplier Inbox Email,Email furnizor primit
+Supplier Inbox Email Handler,Procesator email furnizor
+Supplier Inbox Settings,Setări email furnizor
