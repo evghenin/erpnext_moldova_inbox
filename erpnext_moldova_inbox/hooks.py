@@ -1,5 +1,5 @@
 app_name = "erpnext_moldova_inbox"
-app_title = "ERPNext Moldova Inbox"
+app_title = "Moldova Supplier Inbox"
 app_publisher = "Evgheni Nemerenco"
 app_description = "ERPNext intake for supplier emails, with one inbound document per message and handlers in other apps."
 app_email = "evgheni.nemerenco@gmail.com"
@@ -8,7 +8,7 @@ app_license = "mit"
 # Apps
 # ------------------
 
-# required_apps = []
+required_apps = ["erpnext"]
 
 # Each item in the list will be shown as an app in the apps page
 # add_to_apps_screen = [
@@ -137,13 +137,12 @@ app_license = "mit"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {
+	"Communication": {
+		"after_insert": "erpnext_moldova_inbox.moldova_supplier_inbox.dispatch.link_communication",
+		"on_update": "erpnext_moldova_inbox.moldova_supplier_inbox.dispatch.link_communication",
+	}
+}
 
 # Scheduled Tasks
 # ---------------
