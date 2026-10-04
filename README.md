@@ -35,11 +35,34 @@ EFactura, banking, and other apps keep working when Inbox is not installed. Thei
 
 ### Installation
 
+Requires ERPNext / Frappe v15. Install release **1.0.0**:
+
 ```bash
 cd $PATH_TO_YOUR_BENCH
-bench get-app $URL_OF_THIS_REPO --branch develop
+bench get-app https://github.com/evghenin/erpnext_moldova_inbox.git --branch v1.0.0
 bench --site your-site install-app erpnext_moldova_inbox
+bench --site your-site migrate
+bench restart
 ```
+
+`bench get-app` checks out the tag `v1.0.0`. On the Email Account, **Append To** for the IMAP folder must be **Supplier Inbox Email**. **Supplier Inbox Settings** can set that, together with incoming mail and sync of messages that were already read.
+
+### Update
+
+From the bench, move the app to the release tag and migrate. This does not switch the app to the `develop` branch.
+
+```bash
+cd $PATH_TO_YOUR_BENCH
+cd apps/erpnext_moldova_inbox
+git fetch --tags
+git checkout v1.0.0
+cd ../..
+bench --site your-site migrate
+bench build --app erpnext_moldova_inbox
+bench restart
+```
+
+Repeat `git fetch --tags` and `git checkout` when a newer tag is published, then migrate and restart again. After an update, use **Create Missing Emails** on the Supplier Inbox Email list only for messages that were received before the app created those documents. New mail is picked up by the normal Email Account pull.
 
 ### Plan
 
