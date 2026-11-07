@@ -65,28 +65,37 @@ def queue_handlers(inbound_email):
 
 
 def run_handler(inbound_email, handler):
-	doc = frappe.get_doc("Supplier Inbox Email", inbound_email)
-	row = next((child for child in doc.handlers if child.handler == handler), None)
+	"""Run one handler and store its outcome on that handler row only.
+
+	Handlers for the same email are queued together, and a handler may itself
+	update the email. Saving the parent would raise TimestampMismatchError and
+	could overwrite another handler's result.
+	"""
+	row = frappe.db.get_value(
+		"Supplier Inbox Email Handler",
+		{"parent": inbound_email, "parenttype": "Supplier Inbox Email", "handler": handler},
+		["name", "status"],
+		as_dict=True,
+	)
 	if not row or row.status in FINISHED:
 		return
 
-	row.attempt_time = now_datetime()
+	values = {"attempt_time": now_datetime(), "error": None}
 	try:
-		result = frappe.get_attr(handler)(doc.name)
-		if result is None:
-			row.status = "Skipped"
-			row.error = None
-		else:
-			row.status = "Processed"
-			row.reference_doctype = result.get("doctype")
-			row.reference_name = result.get("name")
-			row.error = None
+		result = frappe.get_attr(handler)(inbound_email)
 	except Exception:
-		row.status = "Failed"
-		row.error = frappe.get_traceback()
-		frappe.log_error(title="Supplier Inbox Email handler failed", message=row.error)
+		values["status"] = "Failed"
+		values["error"] = frappe.get_traceback()
+		frappe.log_error(title="Supplier Inbox Email handler failed", message=values["error"])
+	else:
+		if result is None:
+			values["status"] = "Skipped"
+		else:
+			values["status"] = "Processed"
+			values["reference_doctype"] = result.get("doctype")
+			values["reference_name"] = result.get("name")
 
-	doc.save(ignore_permissions=True)
+	frappe.db.set_value("Supplier Inbox Email Handler", row.name, values)
 
 
 def recreate_missing(email_account):
