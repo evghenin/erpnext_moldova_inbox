@@ -29,6 +29,14 @@ def handler_failed(inbound_email):
 	raise RuntimeError("handler failed")
 
 
+def handler_saves_parent(inbound_email):
+	doc = frappe.get_doc("Supplier Inbox Email", inbound_email)
+	doc.original_subject = "updated by handler"
+	doc.save(ignore_permissions=True)
+	todo = frappe.get_doc({"doctype": "ToDo", "description": inbound_email}).insert(ignore_permissions=True)
+	return {"doctype": todo.doctype, "name": todo.name}
+
+
 class TestInboundEmail(FrappeTestCase):
 	def setUp(self):
 		super().setUp()
@@ -137,6 +145,32 @@ class TestInboundEmail(FrappeTestCase):
 		processed = next(row for row in doc.handlers if row.handler == self._paths[1])
 		self.assertEqual(processed.reference_doctype, "ToDo")
 		self.assertTrue(processed.reference_name)
+
+	def test_handler_result_is_stored_when_the_email_changes_during_the_handler(self):
+		path = (
+			"erpnext_moldova_inbox.moldova_supplier_inbox.doctype.supplier_inbox_email."
+			"test_supplier_inbox_email.handler_saves_parent"
+		)
+		self._handlers.stop()
+		try:
+			from unittest.mock import patch
+
+			with patch(
+				"erpnext_moldova_inbox.moldova_supplier_inbox.dispatch.get_handler_paths",
+				return_value=[path],
+			):
+				doc = frappe.get_doc({"doctype": "Supplier Inbox Email"}).insert(ignore_permissions=True)
+				queue_handlers(doc.name)
+		finally:
+			self._handlers.start()
+
+		doc.reload()
+		self.assertEqual(doc.original_subject, "updated by handler")
+		self.assertEqual(len(doc.handlers), 1)
+		self.assertEqual(doc.handlers[0].status, "Processed")
+		self.assertEqual(doc.handlers[0].reference_doctype, "ToDo")
+		self.assertTrue(doc.handlers[0].reference_name)
+		self.assertTrue(doc.handlers[0].attempt_time)
 
 	def test_second_pass_skips_finished_handlers(self):
 		doc = self._make_inbound(run=False)
